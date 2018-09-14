@@ -10,6 +10,8 @@ class Input extends Component{
 				value={this.props.input}
 				onChange={(e)=>{this.props.handleChange(e)}}
 				/>
+				<button
+				onClick={()=>{this.props.modeChange('select')}}>submit</button>
 			</div>
 			)
 	}

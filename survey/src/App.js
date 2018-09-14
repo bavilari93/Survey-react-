@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import Input from './component/Input'
+import Select from './component/Select'
+
 import './App.css';
 
 class App extends Component {
@@ -7,19 +9,23 @@ class App extends Component {
     super()
     this.state={
       input: '',
+      select:'',
       onChange:'',
       mode:'input'
     }
   }
 handleChange(event){
+  console.log(event);
  const target = event.target, 
  value = target.value,
  name= target.name
+ console.log(name);
  this.setState({
   [name]: value
  })
 }
 modeChanger(e){
+  console.log(e)
 let modeType = ["select", "multiple", "input"];
 modeType.forEach((mode)=>{e===mode?this.setState({mode:mode}):console.log(e)})
 }
@@ -29,8 +35,12 @@ let mode = this.state.mode
 if(mode === 'select'){
   console.log('select')
   return(
-    <div>
-      select
+    <div className="input-container">
+     <Select
+        value ={this.state.select}
+        handleChange={this.handleChange.bind(this)}
+        modeChange={this.modeChanger.bind(this)}
+      />
     </div>
     )
 }else if(mode ==="multiple"){
@@ -44,6 +54,7 @@ if(mode === 'select'){
         <Input
         input = {this.state.input}
         handleChange={this.handleChange.bind(this)}
+        modeChange={this.modeChanger.bind(this)}
         />
     </div>)
 }
